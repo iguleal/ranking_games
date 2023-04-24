@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">RankingGames</string>
+    <string name="create_group">Criar Grupo</string>
+    <string name="group_name">Digite o nome do grupo</string>
+    <string name="cancel">Cancelar</string>
+    <string name="titleDialog">O que deseja fazer?</string>
+    <string name="delete">excluir</string>
+    <string name="edit">Editar</string>
+    <string name="edit_group">Editar Grupo</string>
+    <string name="save">Salvar</string>
+    <string name="add_groups_below">Adicione novos grupos abaixo.</string>
+    <string name="player_name">Digite o nome do jogador</string>
+    <string name="create_player">Criar Jogador</string>
+    <string name="add_players_below">Adicione novos jogadores abaixo.</string>
+    <string name="edit_player">Editar Jogador</string>
+</resources>

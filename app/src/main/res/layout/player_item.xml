@@ -22,7 +22,7 @@
         tools:text="NomeDoPlayer" />
 
     <ImageView
-        android:id="@+id/ic_minus"
+        android:id="@+id/btn_minus"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:padding="8dp"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
-        android:id="@+id/ic_plus"
+        android:id="@+id/btn_plus"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:padding="8dp"

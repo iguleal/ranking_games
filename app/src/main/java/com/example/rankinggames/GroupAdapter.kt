@@ -35,6 +35,9 @@ class GroupAdapter(
             val groupName: TextView = itemView.findViewById(R.id.group_name)
             groupName.text = itemCurrent.name
 
+            val playerCount: TextView = itemView.findViewById(R.id.txt_players_count)
+//            playerCount.text = // TAMANHO DA LISTA DE PLAYERS
+
             val container: ConstraintLayout = itemView.findViewById(R.id.group_container_item)
 
             container.setOnLongClickListener {

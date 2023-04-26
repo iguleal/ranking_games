@@ -1,10 +1,11 @@
 package com.example.rankinggames
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rankinggames.databinding.ActivityPlayersBinding
@@ -12,10 +13,10 @@ import com.example.rankinggames.model.App
 import com.example.rankinggames.model.Group
 import com.example.rankinggames.model.Player
 
-class PlayersActivity : AppCompatActivity(), OnClickListener {
+class PlayersActivity : AppCompatActivity(), OnClickListener, OnWinsClickListener {
 
     private lateinit var binding: ActivityPlayersBinding
-    private lateinit var playerList: MutableList<Player>
+    lateinit var playerList: MutableList<Player>
     private lateinit var adapter: PlayerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +33,7 @@ class PlayersActivity : AppCompatActivity(), OnClickListener {
         binding.rvPlayers.adapter = adapter
 
         supportActionBar()
+
 
         queryPlayers()
 
@@ -67,7 +69,6 @@ class PlayersActivity : AppCompatActivity(), OnClickListener {
                 .create()
                 .show()
         }
-
     }
 
     override fun onDelete(any: Any, position: Int) {
@@ -103,7 +104,7 @@ class PlayersActivity : AppCompatActivity(), OnClickListener {
                 Thread {
                     val app = application as App
                     val dao = app.db.playerDao()
-                    dao.updatePlayer(Player(id = player.id, name = newName, wins = player.wins, groupId = player.groupId))
+                    dao.updatePlayer(Player( name = newName, groupId = player.groupId))
 
                     runOnUiThread {
                         recreate()
@@ -137,4 +138,36 @@ class PlayersActivity : AppCompatActivity(), OnClickListener {
             }
         }.start()
     }
+
+    override fun addWin(player: Player, itemView: View) {
+        val playerWins: TextView = itemView.findViewById(R.id.txt_players_wins)
+
+        player.wins += 1            // player.wins = player.wins + 1
+        val wins = player.wins
+        playerWins.text = wins.toString()
+
+        Thread{
+            val app = application as App
+            val dao = app.db.playerDao()
+            dao.updatePlayer(Player(id = player.id ,name = player.name, wins = wins, groupId = player.groupId))
+
+
+        }.start()
+    }
+
+    override fun removeWin(player: Player, itemView: View) {
+        val playerWins: TextView = itemView.findViewById(R.id.txt_players_wins)
+
+        player.wins -= 1            // player.wins = player.wins - 1
+        val wins = player.wins
+        playerWins.text = wins.toString()
+
+        Thread{
+            val app = application as App
+            val dao = app.db.playerDao()
+            dao.updatePlayer(Player(id = player.id, name = player.name, wins = wins, groupId = player.groupId))
+
+        }.start()
+    }
+
 }

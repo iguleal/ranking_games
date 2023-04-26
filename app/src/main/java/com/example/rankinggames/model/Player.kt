@@ -8,6 +8,6 @@ import androidx.room.PrimaryKey
 data class Player(
     @PrimaryKey(autoGenerate = true ) val id : Int = 0,
     @ColumnInfo(name = "name_player") val name: String,
-    @ColumnInfo(name = "wins") val wins: Int = 0,
+    @ColumnInfo(name = "wins") var wins: Int = 0,
     @ColumnInfo(name = "groupId") val groupId: Int
     )

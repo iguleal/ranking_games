@@ -11,6 +11,9 @@ interface GroupDao {
     @Query("SELECT * FROM `Group`")
     fun getGroups() : List<Group>
 
+    @Query("SELECT * FROM `Group` WHERE id =:id")
+    fun getGroup(id: Int) : Group
+
     @Update
     fun updateGroup(group: Group)
 

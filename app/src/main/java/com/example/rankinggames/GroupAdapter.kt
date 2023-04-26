@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rankinggames.model.Group
 
@@ -36,9 +36,9 @@ class GroupAdapter(
             groupName.text = itemCurrent.name
 
             val playerCount: TextView = itemView.findViewById(R.id.txt_players_count)
-//            playerCount.text = // TAMANHO DA LISTA DE PLAYERS
+            playerCount.text = itemCurrent.playersCount.toString()
 
-            val container: ConstraintLayout = itemView.findViewById(R.id.group_container_item)
+            val container: CardView = itemView.findViewById(R.id.group_container_item)
 
             container.setOnLongClickListener {
 

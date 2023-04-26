@@ -18,13 +18,14 @@ class PlayersActivity : AppCompatActivity(), OnClickListener, OnWinsClickListene
     private lateinit var binding: ActivityPlayersBinding
     lateinit var playerList: MutableList<Player>
     private lateinit var adapter: PlayerAdapter
+    private var groupId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPlayersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val groupId = intent?.extras?.getInt("groupId") ?: throw IllegalStateException("type not found")
+        groupId = intent?.extras?.getInt("groupId") ?: throw IllegalStateException("type not found")
 
         playerList = mutableListOf()
 
@@ -33,7 +34,6 @@ class PlayersActivity : AppCompatActivity(), OnClickListener, OnWinsClickListene
         binding.rvPlayers.adapter = adapter
 
         supportActionBar()
-
 
         queryPlayers()
 
@@ -58,6 +58,14 @@ class PlayersActivity : AppCompatActivity(), OnClickListener, OnWinsClickListene
                         val dao = app.db.playerDao()
                         dao.insertPlayer(player)
 
+                        val daoGroup = app.db.groupDao()
+                        val playerGroup = daoGroup.getGroup(groupId)
+
+                        playerGroup.playersCount += 1
+                        val newCount = playerGroup.playersCount
+
+                        daoGroup.updateGroup(Group(id = playerGroup.id, name = playerGroup.name, playersCount = newCount))
+
                         runOnUiThread {
                             recreate()
                         }
@@ -76,6 +84,14 @@ class PlayersActivity : AppCompatActivity(), OnClickListener, OnWinsClickListene
             val app = application as App
             val dao = app.db.playerDao()
             val response = dao.deletePlayer(any as Player)
+
+            val daoGroup = app.db.groupDao()
+            val playerGroup = daoGroup.getGroup(groupId)
+
+            playerGroup.playersCount -= 1
+            val newCount = playerGroup.playersCount
+
+            daoGroup.updateGroup(Group(id = playerGroup.id, name = playerGroup.name, playersCount = newCount))
 
             if (response > 0) {
                 runOnUiThread {
@@ -104,7 +120,7 @@ class PlayersActivity : AppCompatActivity(), OnClickListener, OnWinsClickListene
                 Thread {
                     val app = application as App
                     val dao = app.db.playerDao()
-                    dao.updatePlayer(Player( name = newName, groupId = player.groupId))
+                    dao.updatePlayer(Player(name = newName, groupId = player.groupId))
 
                     runOnUiThread {
                         recreate()
@@ -117,15 +133,27 @@ class PlayersActivity : AppCompatActivity(), OnClickListener, OnWinsClickListene
             .show()
     }
 
-    private fun supportActionBar(){
-        setSupportActionBar(binding.toolbarPlayer)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Jogadores"
+    private fun supportActionBar() {
+
+        Thread{
+            val app = application as App
+            val daoGroup = app.db.groupDao()
+            val playerGroup = daoGroup.getGroup(groupId)
+
+            runOnUiThread {
+                setSupportActionBar(binding.toolbarPlayer)
+                supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                supportActionBar?.title = playerGroup.name
+            }
+
+        }.start()
+
+
     }
 
-    private fun queryPlayers(){
-        val groupId = intent?.extras?.getInt("groupId") ?: throw IllegalStateException("type not found")
+    private fun queryPlayers() {
+        groupId = intent?.extras?.getInt("groupId") ?: throw IllegalStateException("type not found")
 
         Thread {
             val app = application as App
@@ -146,10 +174,17 @@ class PlayersActivity : AppCompatActivity(), OnClickListener, OnWinsClickListene
         val wins = player.wins
         playerWins.text = wins.toString()
 
-        Thread{
+        Thread {
             val app = application as App
             val dao = app.db.playerDao()
-            dao.updatePlayer(Player(id = player.id ,name = player.name, wins = wins, groupId = player.groupId))
+            dao.updatePlayer(
+                Player(
+                    id = player.id,
+                    name = player.name,
+                    wins = wins,
+                    groupId = player.groupId
+                )
+            )
 
 
         }.start()
@@ -162,10 +197,17 @@ class PlayersActivity : AppCompatActivity(), OnClickListener, OnWinsClickListene
         val wins = player.wins
         playerWins.text = wins.toString()
 
-        Thread{
+        Thread {
             val app = application as App
             val dao = app.db.playerDao()
-            dao.updatePlayer(Player(id = player.id, name = player.name, wins = wins, groupId = player.groupId))
+            dao.updatePlayer(
+                Player(
+                    id = player.id,
+                    name = player.name,
+                    wins = wins,
+                    groupId = player.groupId
+                )
+            )
 
         }.start()
     }

@@ -13,4 +13,5 @@
     <string name="create_player">Criar Jogador</string>
     <string name="add_players_below">Adicione novos jogadores abaixo.</string>
     <string name="edit_player">Editar Jogador</string>
+    <string name="groups">Grupos</string>
 </resources>

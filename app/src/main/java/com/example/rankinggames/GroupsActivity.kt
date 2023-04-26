@@ -1,6 +1,5 @@
 package com.example.rankinggames
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rankinggames.databinding.ActivityGroupsBinding
 import com.example.rankinggames.model.App
 import com.example.rankinggames.model.Group
-import com.example.rankinggames.model.Player
 
 class GroupsActivity : AppCompatActivity(), OnClickListener {
 
@@ -67,6 +65,11 @@ class GroupsActivity : AppCompatActivity(), OnClickListener {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
+
     override fun onDelete(any: Any, position: Int) {
 
         val banana = any as Group
@@ -109,7 +112,7 @@ class GroupsActivity : AppCompatActivity(), OnClickListener {
                 Thread {
                     val app = application as App
                     val dao = app.db.groupDao()
-                    dao.updateGroup(Group(id = group.id, name = newName))
+                    dao.updateGroup(Group(id = group.id, name = newName, playersCount = group.playersCount))
 
                     runOnUiThread {
                         recreate()
@@ -128,6 +131,9 @@ class GroupsActivity : AppCompatActivity(), OnClickListener {
             val dao = app.db.groupDao()
             val response = dao.getGroups()
 
+//            val daoP = app.db.playerDao()
+//            val responseP = daoP.getPlayerById(response[0].id)
+
             runOnUiThread {
                 groupList.addAll(response)
                 adapter.notifyDataSetChanged()
@@ -140,6 +146,6 @@ class GroupsActivity : AppCompatActivity(), OnClickListener {
         setSupportActionBar(binding.toolbarGroup)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Grupos"
+        supportActionBar?.title = getString(R.string.groups)
     }
 }

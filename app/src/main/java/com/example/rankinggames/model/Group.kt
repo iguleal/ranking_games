@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 data class Group(
     @PrimaryKey (autoGenerate = true ) val id : Int = 0,
     @ColumnInfo (name = "name_group") val name: String,
+    @ColumnInfo (name = "players_count") var playersCount: Int = 0
 )
 
 

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rankinggames.model.App
@@ -50,7 +51,7 @@ class PlayerAdapter(
                 listener.removeWin(itemCurrent,itemView)
             }
 
-            val container : ConstraintLayout = itemView.findViewById(R.id.player_container_item)
+            val container : CardView = itemView.findViewById(R.id.player_container_item)
             container.setOnLongClickListener {
 
              AlertDialog.Builder(itemView.rootView.context)

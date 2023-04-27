@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/midnight_blue"
     tools:context=".GroupsActivity">
 
 
@@ -14,14 +14,14 @@
         android:layout_height="50dp"
         android:elevation="4dp"
         app:titleTextColor="@color/white"
-        android:background="@color/color_1"
+        android:background="@color/alizarin_dark"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/view_title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/color_3"
+        android:background="@color/alizarin_light"
         app:layout_constraintBottom_toTopOf="@+id/rv_groups"
         app:layout_constraintTop_toBottomOf="@id/toolbar_group" />
 
@@ -30,9 +30,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/add_groups_below"
-        android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textColor="@color/midnight_blue"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@id/view_title"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
         app:layout_constraintTop_toTopOf="@id/view_title" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -50,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="22dp"
         android:adjustViewBounds="false"
-        android:backgroundTint="@color/color_2"
+        android:backgroundTint="@color/alizarin_light"
         android:clickable="true"
         android:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"

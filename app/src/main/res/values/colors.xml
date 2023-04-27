@@ -10,8 +10,12 @@
     <color name="dark_grey">#858585</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="color_1">#65310F</color>
     <color name="color_2">#F0A673</color>
     <color name="color_3">#C0AC99</color>
-    <color name="cyan">#FF03DAC5</color>
+
+    <color name="midnight_blue">#2C3E50</color>
+    <color name="alizarin">#E74C3C</color>
+    <color name="alizarin_light">#C6695F</color>
+    <color name="alizarin_dark">#780D02</color>
+
 </resources>

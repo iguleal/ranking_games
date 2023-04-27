@@ -80,7 +80,7 @@ class GroupsActivity : AppCompatActivity(), OnClickListener {
             val response = dao.deleteGroup(banana)
 
 
-            /////////////////////
+            //TODO deletar as pessoas junto com o delete do grupo
 
             if (response > 0) {
                 runOnUiThread {
@@ -131,8 +131,6 @@ class GroupsActivity : AppCompatActivity(), OnClickListener {
             val dao = app.db.groupDao()
             val response = dao.getGroups()
 
-//            val daoP = app.db.playerDao()
-//            val responseP = daoP.getPlayerById(response[0].id)
 
             runOnUiThread {
                 groupList.addAll(response)

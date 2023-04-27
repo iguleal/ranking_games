@@ -148,8 +148,6 @@ class PlayersActivity : AppCompatActivity(), OnClickListener, OnWinsClickListene
             }
 
         }.start()
-
-
     }
 
     private fun queryPlayers() {

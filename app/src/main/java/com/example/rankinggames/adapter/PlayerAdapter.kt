@@ -1,4 +1,4 @@
-package com.example.rankinggames
+package com.example.rankinggames.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rankinggames.model.App
+import com.example.rankinggames.OnWinsClickListener
+import com.example.rankinggames.R
 import com.example.rankinggames.model.Player
 
 class PlayerAdapter(
@@ -56,10 +56,10 @@ class PlayerAdapter(
 
              AlertDialog.Builder(itemView.rootView.context)
                  .setTitle(R.string.titleDialog)
-                 .setPositiveButton(R.string.delete){_,_ ->
+                 .setPositiveButton(R.string.delete){ _, _ ->
                      listener.onDelete(itemCurrent, adapterPosition)
                  }
-                 .setNeutralButton(R.string.edit){_,_ ->
+                 .setNeutralButton(R.string.edit){ _, _ ->
                      listener.onUpdate(itemCurrent)
                  }
                  .create()

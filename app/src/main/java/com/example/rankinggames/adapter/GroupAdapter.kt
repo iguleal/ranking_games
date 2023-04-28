@@ -1,4 +1,4 @@
-package com.example.rankinggames
+package com.example.rankinggames.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -8,6 +8,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rankinggames.OnClickListener
+import com.example.rankinggames.ui.PlayersActivity
+import com.example.rankinggames.R
 import com.example.rankinggames.model.Group
 
 class GroupAdapter(

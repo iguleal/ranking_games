@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/player_container_item"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="64dp"
+    app:cardBackgroundColor="@color/light_grey"
     android:layout_marginVertical="2dp"
     android:background="@color/light_grey"
     tools:showIn="@layout/activity_players">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="64dp">
 
         <TextView
             android:id="@+id/player_name"
@@ -21,6 +22,7 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:fontFamily="@font/cabin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,19 +33,22 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:padding="8dp"
-            android:src="@drawable/ic_minus"
+            android:src="@drawable/ic_minus_win"
             app:layout_constraintBottom_toBottomOf="@id/txt_players_wins"
             app:layout_constraintEnd_toStartOf="@id/txt_players_wins"
-            app:layout_constraintTop_toTopOf="@id/txt_players_wins" />
+            app:layout_constraintTop_toTopOf="@id/txt_players_wins"
+            app:tint="@color/alizarin_dark" />
 
         <TextView
             android:id="@+id/txt_players_wins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="64dp"
+            android:layout_marginEnd="78dp"
             android:text="0"
-            android:textColor="@color/black"
-            android:textSize="24sp"
+
+            android:paddingHorizontal="8dp"
+            android:textColor="@color/midnight_blue"
+            android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,14 +58,14 @@
             android:id="@+id/btn_plus"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:layout_marginEnd="64dp"
             android:padding="8dp"
-            android:src="@drawable/ic_plus"
+            android:src="@drawable/ic_plus_win"
             app:layout_constraintBottom_toBottomOf="@id/txt_players_wins"
             app:layout_constraintStart_toEndOf="@id/txt_players_wins"
-            app:layout_constraintTop_toTopOf="@id/txt_players_wins" />
+            app:layout_constraintTop_toTopOf="@id/txt_players_wins"
+            app:tint="@color/alizarin_dark" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
 

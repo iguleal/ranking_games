@@ -1,4 +1,4 @@
-package com.example.rankinggames
+package com.example.rankinggames.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,9 @@ import android.text.InputType
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rankinggames.OnClickListener
+import com.example.rankinggames.R
+import com.example.rankinggames.adapter.GroupAdapter
 import com.example.rankinggames.databinding.ActivityGroupsBinding
 import com.example.rankinggames.model.App
 import com.example.rankinggames.model.Group

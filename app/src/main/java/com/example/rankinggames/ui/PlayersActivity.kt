@@ -1,4 +1,4 @@
-package com.example.rankinggames
+package com.example.rankinggames.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +8,10 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.rankinggames.OnClickListener
+import com.example.rankinggames.OnWinsClickListener
+import com.example.rankinggames.R
+import com.example.rankinggames.adapter.PlayerAdapter
 import com.example.rankinggames.databinding.ActivityPlayersBinding
 import com.example.rankinggames.model.App
 import com.example.rankinggames.model.Group
@@ -120,7 +124,7 @@ class PlayersActivity : AppCompatActivity(), OnClickListener, OnWinsClickListene
                 Thread {
                     val app = application as App
                     val dao = app.db.playerDao()
-                    dao.updatePlayer(Player(name = newName, groupId = player.groupId))
+                    dao.updatePlayer(Player(id = player.id, name = newName, wins = player.wins , groupId = player.groupId))
 
                     runOnUiThread {
                         recreate()

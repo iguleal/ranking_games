@@ -14,4 +14,5 @@
     <string name="add_players_below">Adicione novos jogadores abaixo.</string>
     <string name="edit_player">Editar Jogador</string>
     <string name="groups">Grupos</string>
+    <string name="start">iniciar</string>
 </resources>

@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context=".PlayersActivity">
+    android:background="@color/midnight_blue"
+    tools:context=".ui.PlayersActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_player"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/color_1"
+        android:background="@color/alizarin_dark"
         android:elevation="4dp"
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/white" />
@@ -20,7 +20,7 @@
         android:id="@+id/view_title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/color_3"
+        android:background="@color/alizarin_light"
         app:layout_constraintBottom_toTopOf="@+id/rv_players"
         app:layout_constraintTop_toBottomOf="@id/toolbar_player" />
 
@@ -28,9 +28,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:fontFamily="@font/cabin"
         android:text="@string/add_players_below"
-        android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_title"
         app:layout_constraintStart_toStartOf="@id/view_title"
         app:layout_constraintTop_toTopOf="@id/view_title" />
 
@@ -49,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="22dp"
         android:adjustViewBounds="false"
-        android:backgroundTint="@color/color_2"
+        android:backgroundTint="@color/alizarin"
         android:clickable="true"
         android:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"

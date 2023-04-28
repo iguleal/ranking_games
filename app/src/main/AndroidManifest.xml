@@ -13,12 +13,17 @@
         android:theme="@style/Theme.RankingGames"
         tools:targetApi="31">
         <activity
-            android:name=".PlayersActivity"
-            android:parentActivityName=".GroupsActivity"
+            android:name=".ui.PlayersActivity"
+            android:parentActivityName=".ui.GroupsActivity"
             android:exported="false" />
         <activity
-            android:name=".GroupsActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".ui.GroupsActivity"
+            android:parentActivityName=".ui.MainActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/Theme.RankingGames"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,9 +31,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

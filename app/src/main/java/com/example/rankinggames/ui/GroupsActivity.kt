@@ -93,7 +93,6 @@ class GroupsActivity : AppCompatActivity(), OnClickListener {
             }
 
         }.start()
-
     }
 
     override fun onUpdate(any: Any) {

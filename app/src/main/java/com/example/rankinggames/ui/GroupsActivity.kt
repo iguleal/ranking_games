@@ -12,6 +12,7 @@ import com.example.rankinggames.adapter.GroupAdapter
 import com.example.rankinggames.databinding.ActivityGroupsBinding
 import com.example.rankinggames.model.App
 import com.example.rankinggames.model.Group
+import com.example.rankinggames.model.Player
 
 class GroupsActivity : AppCompatActivity(), OnClickListener {
 
@@ -67,6 +68,7 @@ class GroupsActivity : AppCompatActivity(), OnClickListener {
                 .show()
         }
     }
+
     override fun onResume() {
         super.onResume()
         adapter.notifyDataSetChanged()
@@ -74,21 +76,38 @@ class GroupsActivity : AppCompatActivity(), OnClickListener {
 
     override fun onDelete(any: Any, position: Int) {
 
-        val banana = any as Group
+        val group = any as Group
 
         Thread {
             val app = application as App
             val dao = app.db.groupDao()
-            val response = dao.deleteGroup(banana)
+            val response = dao.deleteGroup(group)
 
-
-            //TODO deletar as pessoas junto com o delete do grupo
+            deletePlayers(group.id)
 
             if (response > 0) {
                 runOnUiThread {
                     groupList.removeAt(position)
                     adapter.notifyItemRemoved(position)
                 }
+            }
+
+        }.start()
+    }
+
+    private fun deletePlayers(groupId: Int) {
+
+        Thread {
+            val app = application as App
+            val dao = app.db.playerDao()
+            val listPlayers = dao.getPlayerById(groupId)
+
+            listPlayers.forEach {
+                dao.deletePlayer(it)
+            }
+
+            runOnUiThread {
+
             }
 
         }.start()
@@ -113,7 +132,13 @@ class GroupsActivity : AppCompatActivity(), OnClickListener {
                 Thread {
                     val app = application as App
                     val dao = app.db.groupDao()
-                    dao.updateGroup(Group(id = group.id, name = newName, playersCount = group.playersCount))
+                    dao.updateGroup(
+                        Group(
+                            id = group.id,
+                            name = newName,
+                            playersCount = group.playersCount
+                        )
+                    )
 
                     runOnUiThread {
                         recreate()
@@ -141,7 +166,7 @@ class GroupsActivity : AppCompatActivity(), OnClickListener {
         }.start()
     }
 
-    private fun supportActionBar(){
+    private fun supportActionBar() {
         setSupportActionBar(binding.toolbarGroup)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

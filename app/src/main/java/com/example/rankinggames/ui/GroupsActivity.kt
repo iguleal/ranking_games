@@ -67,7 +67,6 @@ class GroupsActivity : AppCompatActivity(), OnClickListener {
                 .show()
         }
     }
-
     override fun onResume() {
         super.onResume()
         adapter.notifyDataSetChanged()

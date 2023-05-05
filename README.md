@@ -12,7 +12,7 @@ The following tools were used in building the project:
 - Room Database
 - Androidx
 - AlertDialog
-
+ 
 # Author
 <p>Igor Leal</p>
 <p>Luara Ramos (Lise)</p>
